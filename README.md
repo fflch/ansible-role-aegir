@@ -1,6 +1,6 @@
 # Ansible Role: Aegir
 
-[![Build Status](https://travis-ci.org/GetValkyrie/ansible-role-aegir.svg?branch=master)](https://travis-ci.org/GetValkyrie/ansible-role-aegir)
+[![Build Status](https://travis-ci.org/ergonlogic/ansible-role-aegir.svg?branch=master)](https://travis-ci.org/ergonlogic/ansible-role-aegir)
 
 Installs Aegir, a control panel for deploying and managing large networks of Drupal sites.
 
@@ -19,15 +19,14 @@ Available variables are listed below, along with default values (see `defaults/m
 
 ## Dependencies
 
-  - getvalkyrie.drush (Installs Drush). Note that this role currently defaults
-    to the Drush 7.x branch. As a result, Drupal 8 isn't supported by default.
+- ergonlogic.drush (Installs Drush).
 
 ## Example Playbook
 
     - hosts: servers
       roles:
-        - { role: getvalkyrie.mysql }
-        - { role: getvalkyrie.aegir }
+        - geerlingguy.mysql
+        - ergonlogic.aegir
 
 After the playbook runs, the Aegir front-end site will be available, as will
 the Drush extensions (Provision, et. al.) that do the heavy lifting.
