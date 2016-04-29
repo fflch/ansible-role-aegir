@@ -2,6 +2,7 @@
 - name: Enable mod-rewrite
   apache2_module:
     name: rewrite
+
 - name: Make Aegir's Apache config available
   file:
     state: link

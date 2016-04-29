@@ -1,0 +1,4 @@
+---
+- name: geerlingguy.mysql
+- name: ergonlogic.drush
+

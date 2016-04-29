@@ -1,4 +1,6 @@
 ---
+aegir_install_method: git
+
 aegir_root: /var/aegir
 aegir_user: aegir
 aegir_web_group: www-data

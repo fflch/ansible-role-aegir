@@ -1,6 +1,6 @@
 ---
 dependencies:
-  - 'git+http://github.com/GetValkyrie/ansible-role-drush.git,,getvalkyrie.drush'
+  - ergonlogic.drush
 
 galaxy_info:
   author: ergonlogic
