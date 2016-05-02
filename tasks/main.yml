@@ -13,6 +13,16 @@
   when: (aegir_install_additional_packages == true) and (ansible_os_family == 'Debian')
   with_items: "{{ aegir_additional_packages }}"
 
+- name: Default Aegir database password to MySQL root password
+  set_fact:
+    aegir_db_password: "{{ mysql_root_password }}"
+  when: (aegir_db_password is not defined) and (mysql_root_password is defined)
+
+- name: Default Aegir database user to MySQL root user
+  set_fact:
+    aegir_db_user: "{{ mysql_root_user }}"
+  when: (aegir_db_user is not defined) and (mysql_root_user is defined)
+
 - name: Install Aegir via Git.
   include: git.yml
   when: aegir_install_method == "git"
