@@ -53,15 +53,15 @@
   when: (aegir_db_user is defined) and not (aegir_db_user_debconf.stdout|search(aegir_db_user))
 
 # aegir_db_password
-- name: Look up Aegir database root password in debconf database.
-  shell: "debconf-get-selections | grep aegir/db_password"
-  register: aegir_db_password_debconf
-  changed_when: False
-  failed_when: False
-
+# N.B. We handle passwords differently, since we don't want to leave them in
+# the debconf database, and couldn't read them anyway. So, we clear them at the
+# end of the playbook, and set the each time. To preserve idempotence, we don't
+# count this as 'changed'.
 - name: Set Aegir database root password in debconf database.
-  shell: "echo 'aegir3-hostmaster aegir/db_password string {{ aegir_db_password }}' | debconf-set-selections"
-  when: (aegir_db_password is defined) and not (aegir_db_password_debconf.stdout|search(aegir_db_password))
+  shell: "echo 'aegir3-hostmaster aegir/db_password password {{ aegir_db_password }}' | debconf-set-selections"
+  when: aegir_db_password is defined
+  changed_when: False
+  notify: Clear Aegir database root password from debconf database
 
 # aegir_admin_email
 - name: Look up Aegir administrator email in debconf database.

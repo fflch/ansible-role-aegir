@@ -18,11 +18,14 @@ Vagrant.configure(2) do |config|
       make deps-ansible
       make ansible
       . d
-      make ansible-playbook-test
+      #make ansible-playbook-test
+      make ansible-playbook-test-idempotence
     SHELL
     s.env = {
+      #'ANSIBLE_REQUIREMENTS' => 'tests/roles/git_requirements.yml',
       'ANSIBLE_REQUIREMENTS' => 'tests/roles/deb_requirements.yml',
       'ANSIBLE_ROLES_PATH'   => 'tests/roles',
+      #'ANSIBLE_PLAYBOOK'     => 'tests/playbooks/git.yml',
       'ANSIBLE_PLAYBOOK'     => 'tests/playbooks/deb.yml',
       'PYTHONUNBUFFERED'     => '1',
       'ANSIBLE_FORCE_COLOR'  => 'true',

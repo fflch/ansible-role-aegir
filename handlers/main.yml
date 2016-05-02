@@ -8,3 +8,6 @@
   shell: drush @hm cc drush && drush @hm hosting-task @hostmaster verify --force
   become: yes
   become_user: "{{ aegir_user }}"
+
+- name: Clear Aegir database root password from debconf database
+  shell: "echo 'UNREGISTER aegir/db_password' | debconf-communicate aegir3-hostmaster"
