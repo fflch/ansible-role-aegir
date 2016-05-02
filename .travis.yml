@@ -21,8 +21,8 @@ script:
   - ". d"
 
   # Run playbook tests
-  - make ansible-playbook-test
+  - make ansible-playbook-test-idempotence
 
-  # Check if drush is installed and working.
+  # Check Aegir is installed and working.
   - sudo -u aegir -H drush @hm status | grep eldir
 
