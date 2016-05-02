@@ -16,6 +16,14 @@ server with Ansible. If this role is not present, then the
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
+    aegir_db_username: "{{ mysql_root_username }}"
+
+The name of the Aegir database user. Defaults to the value of mysql_root_username.
+
+    aegir_db_password: "{{ mysql_root_password }}"
+
+The password for the Aegir database user. Defaults to the value of mysql_root_password.
+
 
 ## Dependencies
 

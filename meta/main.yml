@@ -1,39 +1,12 @@
 ---
-dependencies:
-  - ergonlogic.drush
-
 galaxy_info:
-  author: ergonlogic
+  author: Christopher Gervais (ergonlogic)
   description: Aegir - Drupal hosting and provisioning
-  company: "GetValyrie"
+  company: "Ergon Logic Enterprises"
   license: "license (BSD, MIT)"
   min_ansible_version: 1.4
   platforms:
-  - name: EL
-    versions:
-    - all
-  - name: GenericUNIX
-    versions:
-    - all
-  - name: Fedora
-    versions:
-    - all
-  - name: opensuse
-    versions:
-    - all
-  - name: GenericBSD
-    versions:
-    - all
-  - name: FreeBSD
-    versions:
-    - all
   - name: Ubuntu
-    versions:
-    - all
-  - name: SLES
-    versions:
-    - all
-  - name: GenericLinux
     versions:
     - all
   - name: Debian

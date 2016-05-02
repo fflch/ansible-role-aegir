@@ -21,11 +21,15 @@ Vagrant.configure(2) do |config|
       make ansible-playbook-test
     SHELL
     s.env = {
-      'ANSIBLE_REQUIREMENTS' => 'tests/roles/git_requirements.yml',
+      'ANSIBLE_REQUIREMENTS' => 'tests/roles/deb_requirements.yml',
       'ANSIBLE_ROLES_PATH'   => 'tests/roles',
-      'ANSIBLE_PLAYBOOK'     => 'tests/playbooks/git.yml',
+      'ANSIBLE_PLAYBOOK'     => 'tests/playbooks/deb.yml',
       'PYTHONUNBUFFERED'     => '1',
       'ANSIBLE_FORCE_COLOR'  => 'true',
+      # *N.B.* While this functionality has been implemented in Drumkit, it is
+      # currently largely broken in Ansible, due to the shift to dynamic
+      # includes in 2.0+.
+      #'START_AT_TASK' => 'Install Aegir via Debian packages.',
     }
     s.keep_color = true
   end

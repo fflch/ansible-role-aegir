@@ -3,3 +3,5 @@ ansible.cfg
 .vagrant/*
 tests/roles/*
 !tests/roles/*.yml
+*.retry
+*.swp
