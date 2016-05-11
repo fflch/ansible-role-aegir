@@ -12,6 +12,9 @@ galaxy_info:
   - name: Debian
     versions:
     - all
-  categories:
+  galaxy_tags:
     - development
+    - hosting
     - web
+    - aegir
+dependencies: []
