@@ -59,9 +59,9 @@
 
 # aegir_db_password
 # N.B. We handle passwords differently, since we don't want to leave them in
-# the debconf database, and couldn't read them anyway. So, we clear them at the
-# end of the playbook, and set the each time. To preserve idempotence, we don't
-# count this as 'changed'.
+# the debconf database, and couldn't read them anyway. So, we clear the
+# database password at the end of the playbook, and set it each time. To
+# preserve idempotence, we don't count this as 'changed'.
 - name: Set Aegir database root password in debconf database.
   shell: "echo 'aegir3-hostmaster aegir/db_password password {{ aegir_db_password }}' | debconf-set-selections"
   when: aegir_db_password is defined
