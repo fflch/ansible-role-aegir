@@ -12,6 +12,11 @@
     state: present
     update_cache: True
 
+- name: Install tools to allow idempotently settings options for Debian packages.
+  apt:
+    name: "debconf-utils"
+    state: present
+
 # The general pattern for the following 'debconf-set-selections' tasks is that
 # they'll be set ONLY IF:
 #   (1) the relevant variable has been defined, AND
