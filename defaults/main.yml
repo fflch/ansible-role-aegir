@@ -1,6 +1,7 @@
 ---
 aegir_install_method: deb
 aegir_deb_release: stable
+aegir_repo_key_id: "5ADF93A03376CCF9"
 
 aegir_root: /var/aegir
 aegir_user: aegir

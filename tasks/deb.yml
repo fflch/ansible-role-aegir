@@ -1,7 +1,7 @@
 ---
 - name: Add Aegir Project APT key.
   apt_key:
-    id: "5ADF93A03376CCF9"
+    id: "{{ aegir_repo_key_id }}"
     state: present
     url: http://debian.aegirproject.org/key.asc
 
