@@ -12,5 +12,4 @@
 
   roles:
     - geerlingguy.mysql
-    - ergonlogic.drush
     - ergonlogic.aegir

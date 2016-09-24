@@ -1,0 +1,12 @@
+---
+
+- name: Download Drush
+  get_url:
+    url: http://files.drush.org/drush.phar
+    dest: /usr/local/bin/drush
+
+- name: Ensure Drush is executable
+  file:
+    path: /usr/local/bin/drush
+    mode: "a+x"
+
