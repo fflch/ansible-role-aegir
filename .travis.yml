@@ -7,9 +7,19 @@ dist: trusty
 env:
   global:
     - ANSIBLE_ROLES_PATH=tests/roles
+    - ANSIBLE_REQUIREMENTS=tests/requirements.yml
+    - ANSIBLE_PLAYBOOK=tests/playbook.yml
   matrix:
-    - ANSIBLE_PLAYBOOK=tests/playbooks/git.yml ANSIBLE_REQUIREMENTS=tests/roles/git_requirements.yml
-    - ANSIBLE_PLAYBOOK=tests/playbooks/deb.yml ANSIBLE_REQUIREMENTS=tests/roles/deb_requirements.yml
+    # Check every combination of deb/git, php5/php7.0 and nginx/apache
+    - ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=7.0 aegir_http_service_type=nginx"
+    - ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=7.0 aegir_http_service_type=apache"
+    - ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=5 aegir_http_service_type=nginx"
+    - ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=5 aegir_http_service_type=apache"
+    - ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=7.0 aegir_http_service_type=nginx"
+    - ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=7.0 aegir_http_service_type=apache"
+    - ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=5 aegir_http_service_type=nginx"
+    - ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=5 aegir_http_service_type=apache"
+
 
 install:
   - sudo make deps-ansible
