@@ -1,6 +1,5 @@
 ---
-language: python
-python: "2.7"
+language: php
 
 dist: trusty
 
@@ -9,16 +8,26 @@ env:
     - ANSIBLE_ROLES_PATH=tests/roles
     - ANSIBLE_REQUIREMENTS=tests/requirements.yml
     - ANSIBLE_PLAYBOOK=tests/playbook.yml
-  matrix:
+
+matrix:
+  include:
     # Check every combination of deb/git, php5/php7.0 and nginx/apache
-    - ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=7.0 aegir_http_service_type=nginx"
-    - ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=7.0 aegir_http_service_type=apache"
-    - ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=5 aegir_http_service_type=nginx"
-    - ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=5 aegir_http_service_type=apache"
-    - ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=7.0 aegir_http_service_type=nginx"
-    - ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=7.0 aegir_http_service_type=apache"
-    - ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=5 aegir_http_service_type=nginx"
-    - ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=5 aegir_http_service_type=apache"
+    - php: 5.6
+      env: ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=5 aegir_http_service_type=nginx"
+    - php: 5.6
+      env: ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=5 aegir_http_service_type=apache"
+    - php: 5.6
+      env: ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=5 aegir_http_service_type=nginx"
+    - php: 5.6
+      env: ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=5 aegir_http_service_type=apache"
+    - php: 7.0
+      env: ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=7.0 aegir_http_service_type=apache"
+    - php: 7.0
+      env: ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=7.0 aegir_http_service_type=nginx"
+    - php: 7.0
+      env: ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=7.0 aegir_http_service_type=nginx"
+    - php: 7.0
+      env: ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=7.0 aegir_http_service_type=apache"
 
 
 install:
