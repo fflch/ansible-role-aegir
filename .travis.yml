@@ -33,7 +33,6 @@ env:
     - ANSIBLE_ROLES_PATH=tests/roles
     - ANSIBLE_REQUIREMENTS=tests/requirements.yml
     - ANSIBLE_PLAYBOOK=tests/playbook.yml
-    - ANSIBLE_EXTRA_VARS="aegir_install_method=$INSTALL_METHOD aegir_php_version=$PHP_VERSION aegir_http_service_type=$HTTP_SERVICE"
 
 
 install:
@@ -45,6 +44,9 @@ script:
   # Bootstrap Drumkit
   - ". d"
 
+  # Set extra vars
+  - export ANSIBLE_EXTRA_VARS="aegir_install_method=$INSTALL_METHOD aegir_php_version=$PHP_VERSION aegir_http_service_type=$HTTP_SERVICE"
+
   # Run playbook tests
   - make ansible-playbook-test-idempotence
 
@@ -52,5 +54,5 @@ script:
   - sudo -u aegir -H drush @hm status | grep eldir
 
   # Check that correct HTTP server was installed.
-  - drush @server_master eval "drush_print_r(d()->http_service_type);"
+  - drush @server_master eval "drush_print_r(d()->http_service_type);" | grep $HTTP_SERVICE
 
