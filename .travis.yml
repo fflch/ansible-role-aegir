@@ -33,7 +33,7 @@ env:
     - ANSIBLE_ROLES_PATH=tests/roles
     - ANSIBLE_REQUIREMENTS=tests/requirements.yml
     - ANSIBLE_PLAYBOOK=tests/playbook.yml
-
+    - LAST_KNOWN_GOOD_DRUSH=8.1.3
 
 install:
   - sudo make deps-ansible
@@ -45,7 +45,7 @@ script:
   - ". d"
 
   # Set extra vars
-  - export ANSIBLE_EXTRA_VARS="aegir_install_method=$INSTALL_METHOD aegir_php_version=$PHP_VERSION aegir_http_service_type=$HTTP_SERVICE"
+  - export ANSIBLE_EXTRA_VARS="aegir_install_method=$INSTALL_METHOD aegir_php_version=$PHP_VERSION aegir_http_service_type=$HTTP_SERVICE aegir_drush_version=$LAST_KNOWN_GOOD_DRUSH"
 
   # Run playbook tests
   - make ansible-playbook-test-idempotence
