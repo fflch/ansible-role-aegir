@@ -49,3 +49,6 @@ script:
   # Check Aegir is installed and working.
   - sudo -u aegir -H drush @hm status | grep eldir
 
+  # Check that correct HTTP server was installed.
+  - drush @server_master eval "drush_print_r(d()->http_service_type);"
+
