@@ -22,13 +22,24 @@ matrix:
       env: ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=5 aegir_http_service_type=apache"
     - php: 7.0
       env: ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=7.0 aegir_http_service_type=apache"
+      install:
+        - sudo add-apt-repository ppa:ondrej/php
+        - sudo apt-get update
     - php: 7.0
       env: ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=7.0 aegir_http_service_type=nginx"
+      install:
+        - sudo add-apt-repository ppa:ondrej/php
+        - sudo apt-get update
     - php: 7.0
       env: ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=7.0 aegir_http_service_type=nginx"
+      install:
+        - sudo add-apt-repository ppa:ondrej/php
+        - sudo apt-get update
     - php: 7.0
       env: ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=7.0 aegir_http_service_type=apache"
-
+      install:
+        - sudo add-apt-repository ppa:ondrej/php
+        - sudo apt-get update
 
 install:
   - sudo make deps-ansible
