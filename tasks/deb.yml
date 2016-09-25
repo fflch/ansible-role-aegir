@@ -17,12 +17,25 @@
     name: "debconf-utils"
     state: present
 
+# Ref.: http://docs.aegirproject.org/en/3.x/install/#71-custom-options
+
 # The general pattern for the following 'debconf-set-selections' tasks is that
 # they'll be set ONLY IF:
 #   (1) the relevant variable has been defined, AND
 #   (2) EITHER:
 #     (2.1) the selection hasn't been set yet, OR
 #     (2.2) the selection doesn't match the variable's value.
+
+# aegir_drush_version
+- name: Look up Aegir Drush version in debconf database.
+  shell: "debconf-get-selections | grep aegir/drush_version"
+  register: aegir_drush_version_debconf
+  changed_when: False
+  failed_when: False
+
+- name: Set Aegir Drush version in debconf database.
+  shell: "echo 'aegir3-provision aegir/drush_version string {{ aegir_drush_version }}' | debconf-set-selections"
+  when: (aegir_drush_version is defined) and not (aegir_drush_version_debconf.stdout|search(aegir_drush_version))
 
 # aegir_frontend_url
 - name: Look up Aegir front-end URL in debconf database.
