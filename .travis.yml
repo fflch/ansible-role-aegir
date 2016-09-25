@@ -3,12 +3,6 @@ language: php
 
 dist: trusty
 
-env:
-  global:
-    - ANSIBLE_ROLES_PATH=tests/roles
-    - ANSIBLE_REQUIREMENTS=tests/requirements.yml
-    - ANSIBLE_PLAYBOOK=tests/playbook.yml
-
 addons:
   apt:
     sources:
@@ -18,21 +12,29 @@ matrix:
   include:
     # Check every combination of deb/git, php5/php7.0 and nginx/apache
     - php: 5.6
-      env: ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=5 aegir_http_service_type=nginx"
+      env: INSTALL_METHOD=git PHP_VERSION=5 HTTP_SERVICE=nginx
     - php: 5.6
-      env: ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=5 aegir_http_service_type=apache"
+      env: INSTALL_METHOD=git PHP_VERSION=5 HTTP_SERVICE=apache
     - php: 5.6
-      env: ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=5 aegir_http_service_type=nginx"
+      env: INSTALL_METHOD=deb PHP_VERSION=5 HTTP_SERVICE=nginx
     - php: 5.6
-      env: ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=5 aegir_http_service_type=apache"
+      env: INSTALL_METHOD=deb PHP_VERSION=5 HTTP_SERVICE=apache
     - php: 7.0
-      env: ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=7.0 aegir_http_service_type=apache"
+      env: INSTALL_METHOD=git PHP_VERSION=7.0 HTTP_SERVICE=nginx
     - php: 7.0
-      env: ANSIBLE_EXTRA_VARS="aegir_install_method=git aegir_php_version=7.0 aegir_http_service_type=nginx"
+      env: INSTALL_METHOD=git PHP_VERSION=7.0 HTTP_SERVICE=apache
     - php: 7.0
-      env: ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=7.0 aegir_http_service_type=nginx"
+      env: INSTALL_METHOD=deb PHP_VERSION=7.0 HTTP_SERVICE=nginx
     - php: 7.0
-      env: ANSIBLE_EXTRA_VARS="aegir_install_method=deb aegir_php_version=7.0 aegir_http_service_type=apache"
+      env: INSTALL_METHOD=deb PHP_VERSION=7.0 HTTP_SERVICE=apache
+
+env:
+  global:
+    - ANSIBLE_ROLES_PATH=tests/roles
+    - ANSIBLE_REQUIREMENTS=tests/requirements.yml
+    - ANSIBLE_PLAYBOOK=tests/playbook.yml
+    - ANSIBLE_EXTRA_VARS="aegir_install_method=$INSTALL_METHOD aegir_php_version=$PHP_VERSION aegir_http_service_type=$HTTP_SERVICE"
+
 
 install:
   - sudo make deps-ansible
