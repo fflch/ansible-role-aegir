@@ -4,11 +4,8 @@
   gather_facts: True
 
   vars:
-    # Use default log file size so Travis CI VM allows MySQL restart.
-    - mysql_innodb_log_file_size: "5M"
-    - mysql_root_password: "root"
-    - mysql_root_user: "root"
+    - aegir_db_user: "root"
+    - aegir_db_password: ""
 
   roles:
-    - geerlingguy.mysql
     - ergonlogic.aegir
