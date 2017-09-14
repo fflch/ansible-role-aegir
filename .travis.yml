@@ -5,6 +5,9 @@ dist: trusty
 
 addons:
   apt:
+    packages:
+    - mysql-common
+    - mysql-server
     sources:
     - sourceline: 'ppa:ondrej/php'
 
@@ -42,12 +45,6 @@ install:
   - sudo make deps-ansible
   - pip install pyyaml jinja2
   - make ansible
-  # Completely remove mysql
-  - sudo apt-get remove -y --purge mysql-server mysql-client mysql-common
-  - sudo apt-get autoremove -y
-  - sudo apt-get autoclean
-  - sudo rm -rf /var/lib/mysql
-  - sudo rm -rf /root/.my.cnf
 
 script:
   # Bootstrap Drumkit
