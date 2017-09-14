@@ -34,6 +34,7 @@ matrix:
 env:
   global:
     - ANSIBLE_ROLES_PATH=tests/roles
+    - ANSIBLE_REQUIREMENTS=tests/requirements.yml
     - ANSIBLE_PLAYBOOK=tests/playbook.yml
     - LAST_KNOWN_GOOD_DRUSH=8.1.3
 
