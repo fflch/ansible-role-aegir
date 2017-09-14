@@ -4,8 +4,15 @@
   gather_facts: True
 
   vars:
-    - aegir_db_user: "root"
-    - aegir_db_password: ""
+    aegir_db_user: "root"
+    aegir_db_password: ""
+    # Remove mysql-client due to TravisCI weirdness.
+    aegir_dependencies:
+      - postfix
+      - sudo
+      - rsync
+      - git
+      - unzip
 
   roles:
     - ergonlogic.aegir
