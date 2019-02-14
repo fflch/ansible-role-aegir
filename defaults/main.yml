@@ -61,3 +61,12 @@ aegir_dependencies_nginx_php7_0:
   - nginx
   - php7.0-fpm
 
+aegir_platforms_path: '/var/aegir/platforms/'
+aegir_install_default_platforms: false
+aegir_platforms2build:
+  - name: prod-team
+    repo: http://git.drupal.org/project/drupal.git
+    version: 8.6.8
+  - name: dev-team
+    repo: http://git.drupal.org/project/drupal.git
+    version: 8.6.9
