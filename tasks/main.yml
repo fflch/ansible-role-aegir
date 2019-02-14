@@ -5,10 +5,9 @@
 
 - name: Install additional packages.
   apt:
-    name: "{{ item }}"
-    state: installed
+    name: "{{ aegir_additional_packages }}"
+    state: present
   when: (aegir_install_additional_packages == true) and (ansible_os_family == 'Debian')
-  with_items: "{{ aegir_additional_packages }}"
 
 - name: Default Aegir database password to MySQL root password
   set_fact:
@@ -27,21 +26,24 @@
 - name: Install Aegir via Debian packages.
   include: deb.yml
   when: aegir_install_method == "deb"
+#
+#- include: generate-keypair.yml
+#  when: aegir_generate_keypair
+#
+#- include: fix_permissions.yml
+#  when: aegir_fix_permissions
+#
+#- include: fix_ownership.yml
+#  when: aegir_fix_ownership
+#
+#- include: registry_rebuild.yml
+#  when: aegir_registry_rebuild
+#
+#- name: Ensure Hosting is recognized as enabled
+#  shell: drush @hostmaster cc drush
+#  become: yes
+#  become_user: "{{ aegir_user }}"
+#  changed_when: False
 
-- include: generate-keypair.yml
-  when: aegir_generate_keypair
+- include: user1.yml
 
-- include: fix_permissions.yml
-  when: aegir_fix_permissions
-
-- include: fix_ownership.yml
-  when: aegir_fix_ownership
-
-- include: registry_rebuild.yml
-  when: aegir_registry_rebuild
-
-- name: Ensure Hosting is recognized as enabled
-  shell: drush @hostmaster cc drush
-  become: yes
-  become_user: "{{ aegir_user }}"
-  changed_when: False

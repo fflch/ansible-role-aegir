@@ -1,0 +1,12 @@
+# https://docs.aegirproject.org/install/#34-sudo-configuration
+# suggested by doc:
+
+#Defaults:{{ aegir_user }}  !requiretty
+#{{ aegir_user }} ALL=NOPASSWD: /usr/sbin/apache2ctl # for Apache
+#{{ aegir_user }} ALL=NOPASSWD: /etc/init.d/nginx    # for Nginx
+
+# however, in the installation process, this command:
+# sudo /usr/local/bin/fix-drupal-site-ownership.sh
+# is executed, so temporary let's set...
+
+{{ aegir_user }} ALL=(ALL) NOPASSWD:ALL

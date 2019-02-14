@@ -3,6 +3,7 @@
   apt:
     name: "{{ aegir_dependencies }}"
     state: present
+    update_cache: yes
 
 - name: Ensure Aegir's PHP 5 dependencies are present.
   apt:

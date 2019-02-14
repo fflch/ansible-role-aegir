@@ -1,0 +1,11 @@
+---
+- name: get user 1 username
+  shell: "drush @hostmaster user-information 1 --pipe | cut -d',' -f1"
+  register: user1
+  become: yes
+  become_user: aegir
+
+- name: set frontend admin password
+  shell: 'drush @hostmaster user-password {{ user1.stdout }} --password="{{ aegir_user1_password }}"'
+  become: yes
+  become_user: aegir
