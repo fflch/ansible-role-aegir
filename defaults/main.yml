@@ -14,7 +14,8 @@ aegir_drush_version: '8.1.16'
 aegir_install_additional_packages: true
 aegir_additional_packages: []
 aegir_provision_repo: http://git.drupal.org/project/provision.git
-aegir_provision_version: 7.x-3.172
+aegir_provision_version: 7.x-3.173
+aegir_provision_update: true
 aegir_http_service_type: apache
 aegir_makefile: aegir.make
 aegir_makefile_path: "{{ playbook_dir }}/{{ aegir_makefile }}"

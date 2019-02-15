@@ -34,19 +34,13 @@
     group: "{{ aegir_user }}"
 
 # Ref. https://docs.aegirproject.org/install/#43-install-provision
-#- name: Clone Provision
-#  git:
-#    repo: "{{ aegir_provision_repo }}"
-#    dest: "{{ aegir_root }}/.drush/provision"
-#    depth: 1 # speeds things up
-#    version: "{{ aegir_provision_version }}"
-#    update: "{{ aegir_provision_update }}"
-#  become: yes
-#  become_user: "{{ aegir_user }}"
-
-# fast way to download provision
-- name: Download Provision
-  command: drush dl --destination={{ aegir_root }}/.drush provision-"{{ aegir_provision_version }}" --yes
+- name: Clone Provision
+  git:
+    repo: "{{ aegir_provision_repo }}"
+    dest: "{{ aegir_root }}/.drush/provision"
+    depth: 1 # speeds things up
+    version: "{{ aegir_provision_version }}"
+    update: "{{ aegir_provision_update }}"
   become: yes
   become_user: "{{ aegir_user }}"
 
