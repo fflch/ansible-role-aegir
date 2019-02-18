@@ -33,6 +33,15 @@ aegir_dependencies:
   - git
   - unzip
 
+aegir_install_hostmaster_modules: true
+aegir_hostmaster_modules:
+  - hosting_site_backup_manager
+  - hosting_backup_window
+  - hosting_backup_queue
+  - hosting_task_gc
+  - hosting_clone
+  - hosting_git
+
 aegir_platforms_path: '/var/aegir/platforms/'
 aegir_install_git_platforms: false
 aegir_git_platforms:

@@ -74,3 +74,10 @@
   become: yes
   become_user: "{{ aegir_user }}"
   when: aegir_install_git_platforms
+
+- name: Install hostmaster modules
+  command: "drush @hostmaster en {{ item }} --yes"
+  become: yes
+  become_user: "{{ aegir_user }}"
+  with_items: "{{aegir_hostmaster_modules}}"
+  when: aegir_install_hostmaster_modules
