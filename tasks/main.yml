@@ -24,11 +24,6 @@
 
 - name: Install Aegir via Git.
   include: git.yml
-  when: aegir_install_method == "git"
-
-- name: Install Aegir via Debian packages.
-  include: deb.yml
-  when: aegir_install_method == "deb"
 
 - include: generate-keypair.yml
   when: aegir_generate_keypair
@@ -50,7 +45,7 @@
 
 - include: user1.yml
 
-#- include: platforms.yml
-#  with_items:
-#    - "{{ aegir_platforms2build }}"
-#  when: aegir_install_default_platforms
+- include: git_platforms.yml
+  with_items:
+    - "{{ aegir_git_platforms }}"
+  when: aegir_install_git_platforms

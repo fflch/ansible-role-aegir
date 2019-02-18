@@ -1,10 +1,4 @@
 ---
-aegir_install_method: deb
-aegir_deb_release: stable
-aegir_debian_makefile_etc_path: /etc/aegir
-aegir_debian_makefile_upload_path: "{{ aegir_debian_makefile_etc_path }}/aegir.make.yml"
-aegir_repo_key_id: "5ADF93A03376CCF9"
-
 aegir_root: /var/aegir
 aegir_user: aegir
 aegir_web_group: www-data
@@ -63,11 +57,8 @@ aegir_dependencies_nginx_php7_0:
   - php7.0-fpm
 
 aegir_platforms_path: '/var/aegir/platforms/'
-aegir_install_default_platforms: false
-aegir_platforms2build:
+aegir_install_git_platforms: true
+aegir_git_platforms:
   - name: prod-team
     repo: http://git.drupal.org/project/drupal.git
     version: 8.6.8
-  - name: dev-team
-    repo: http://git.drupal.org/project/drupal.git
-    version: 8.6.9
