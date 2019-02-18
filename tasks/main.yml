@@ -9,9 +9,6 @@
     state: present
   when: (aegir_install_additional_packages == true) and (ansible_os_family == 'Debian')
 
-- name: Install composer
-  include: composer.yml
-
 - name: Default Aegir database password to MySQL root password
   set_fact:
     aegir_db_password: "{{ mysql_root_password }}"
