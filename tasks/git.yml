@@ -68,3 +68,9 @@
     creates: "{{ aegir_root }}/hostmaster-{{ aegir_platform_version }}/sites/{{ aegir_frontend_url }}/"
   become: yes
   become_user: "{{ aegir_user }}"
+
+- name: Install hosting_git to deploy platforms
+  command: drush @hostmaster en hosting_git --yes
+  become: yes
+  become_user: "{{ aegir_user }}"
+  when: aegir_install_git_platforms

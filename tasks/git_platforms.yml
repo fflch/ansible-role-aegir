@@ -8,29 +8,52 @@
     path: '{{ aegir_platforms_path }}/{{ platform }}'
   register: check_platform
 
-- name: clone platform
-  git:
-    repo: "{{ item.repo }}"
-    dest: "{{ aegir_platforms_path }}/{{ platform }}"
-    version: "{{ item.version }}"
-    update: yes
-  become: yes
-  become_user: "{{ aegir_user }}"
+#- name: clone platform
+#  git:
+#    repo: "{{ item.repo }}"
+#    dest: "{{ aegir_platforms_path }}/{{ platform }}"
+#    version: "{{ item.version }}"
+#    update: yes
+#  become: yes
+#  become_user: "{{ aegir_user }}"
 
-- name: Install dependecies
-  composer:
-    command: install
-    working_dir: "{{ aegir_platforms_path }}/{{ platform }}"
-  become: yes
-  become_user: "{{ aegir_user }}"
+#- name: Install dependecies
+#  composer:
+#    command: install
+#    no_dev: no
+#    working_dir: "{{ aegir_platforms_path }}/{{ platform }}"
+#  become: yes
+#  become_user: "{{ aegir_user }}"
 
 - name: Provision platform
   shell: >
-    drush provision-save @platform_{{ platform }} --context_type=platform --root={{ aegir_platforms_path }}/{{ platform }} ;
-    drush provision-verify @platform_{{ platform }} ;
+    drush provision-save @platform_{{ platform }}
+    --deploy_from_git=true
+    --context_type=platform
+    --repo_url={{ item.repo }}
+    --git_ref={{ item.version }}
+    --repo_path={{ aegir_platforms_path }}/{{ platform }}
+    --root={{ aegir_platforms_path }}/{{ platform }}/web
+  become: yes
+  become_user: "{{ aegir_user }}"
+  args:
+    chdir: "{{ aegir_root }}"
+  when: not check_platform.stat.exists
+
+- name: provision-verify platform
+  shell: >
+    drush provision-verify @platform_{{ platform }};
+  become: yes
+  become_user: "{{ aegir_user }}"
+  args:
+    chdir: "{{ aegir_root }}"
+  when: not check_platform.stat.exists
+
+- name: hosting-import platform
+  shell: >
     drush @hostmaster hosting-import @platform_{{ platform }}
   become: yes
   become_user: "{{ aegir_user }}"
   args:
-    chdir: "{{ aegir_platforms_path }}/{{ platform }}"
+    chdir: "{{ aegir_root }}"
   when: not check_platform.stat.exists
