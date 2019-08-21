@@ -28,7 +28,7 @@
   shell: drush @hostmaster cc drush
   become: yes
   become_user: "{{ aegir_user }}"
-  changed_when: False
+#  changed_when: False
 
 #- include: user1.yml
 
