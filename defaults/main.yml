@@ -3,7 +3,7 @@ aegir_root: /var/aegir
 aegir_user: aegir
 aegir_web_group: www-data
 aegir_install_drush: true
-aegir_drush_version: '8.1.16'
+aegir_drush_version: '8.3.0'
 
 aegir_provision_repo: https://git.drupal.org/project/provision.git
 aegir_provision_version: 7.x-3.174
