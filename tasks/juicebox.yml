@@ -1,0 +1,22 @@
+- name: Download juicebox e descompacta
+  unarchive:
+    src: https://www.juicebox.net/release/juicebox_lite_1.5.1.zip
+    dest: /tmp
+    remote_src: yes
+  tags: juicebox
+
+- name: cria o diretório do juicebox
+  file:
+    dest: "/var/aegir/platforms/{{aegir_git_platforms[0]['name']}}/web/libraries/juicebox"
+    state: directory
+    owner: aegir
+    group: aegir
+  tags: juicebox
+
+- name: copia o diretório do juicebox para a pasta libraries
+  copy:
+    src: "/tmp/juicebox_lite_1.5.1/web/jbcore/"
+    dest: "/var/aegir/platforms/{{aegir_git_platforms[0]['name']}}/web/libraries/juicebox/"
+    owner: aegir
+    group: aegir
+    remote_src: yes
