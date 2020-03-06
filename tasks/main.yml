@@ -36,6 +36,3 @@
   with_items:
     - "{{ aegir_git_platforms }}"
   when: aegir_install_git_platforms
-
-- import_tasks: juicebox.yml
-  tags: juicebox
