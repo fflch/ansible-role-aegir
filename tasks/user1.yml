@@ -1,6 +1,7 @@
 ---
 - name: get user 1 username
-  shell: "drush @hostmaster user-information 1 --pipe | cut -d',' -f1"
+  shell: > 
+    drush @hostmaster user-information 1 --pipe | cut -d',' -f1
   register: user1
   become: yes
   become_user: aegir
