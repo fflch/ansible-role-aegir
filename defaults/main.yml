@@ -41,6 +41,8 @@ aegir_hostmaster_modules:
   - hosting_task_gc
   - hosting_clone
   - hosting_git
+  - hosting_tasks_extra
+  - hosting_alias
 
 aegir_platforms_path: '/var/aegir/platforms/'
 aegir_install_git_platforms: false
