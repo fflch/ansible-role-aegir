@@ -30,7 +30,7 @@
   become_user: "{{ aegir_user }}"
 #  changed_when: False
 
-#- include: user1.yml
+- include: user1.yml
 
 - include: git_platforms.yml
   with_items:
