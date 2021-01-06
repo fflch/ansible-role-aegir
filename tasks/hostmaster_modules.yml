@@ -1,0 +1,17 @@
+- name: download hostmaster modules
+  shell: >
+    drush @hostmaster dl {{ item.name }}-{{ item.version }}  \
+      --destination=$(drush dd @hm:%site)/modules/contrib --yes
+  become: yes
+  become_user: "{{ aegir_user }}"
+
+- name: Enable hostmaster modules
+  command: "drush @hostmaster en {{ item.name }} --yes"
+  become: yes
+  become_user: "{{ aegir_user }}"
+  when: aegir_install_hostmaster_modules
+
+- name: Clear Drush cache for Provision extension
+  command: drush @none cache-clear drush
+  become: yes
+  become_user: "{{ aegir_user }}"

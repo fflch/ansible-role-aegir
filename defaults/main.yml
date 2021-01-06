@@ -44,6 +44,10 @@ aegir_hostmaster_modules:
   - hosting_tasks_extra
   - hosting_alias
 
+aegir_download_hostmaster_modules:
+  - name: hosting_task_gc_extra
+    version: '7.x-1.0-beta2'
+
 aegir_platforms_path: '/var/aegir/platforms/'
 aegir_install_git_platforms: false
 aegir_git_platforms:

@@ -12,6 +12,11 @@
 - name: Install Aegir via Git.
   include: git.yml
 
+- name: Download and Install Extra hostmaster_modules
+  include: hostmaster_modules.yml
+  with_items:
+    - "{{ aegir_download_hostmaster_modules }}"
+
 - include: generate-keypair.yml
   when: aegir_generate_keypair
 
