@@ -3,7 +3,7 @@ aegir_root: /var/aegir
 aegir_user: aegir
 aegir_web_group: www-data
 aegir_install_drush: true
-aegir_drush_version: '8.3.0'
+aegir_drush_version: '8.4.8'
 
 aegir_provision_repo: https://git.drupal.org/project/provision.git
 aegir_provision_version: 7.x-3.180
@@ -11,7 +11,7 @@ aegir_provision_update: true
 aegir_http_service_type: apache
 aegir_platform_version: 7.x-3.x
 aegir_frontend_url: aegir.local
-aegir_generate_keypair: true
+aegir_generate_keypair: false
 aegir_fix_ownership: true
 aegir_fix_permissions: true
 aegir_registry_rebuild: true
@@ -44,6 +44,7 @@ aegir_hostmaster_modules:
   - hosting_tasks_extra
   - hosting_alias
 
+aegir_deploy_third_hostmaster_modules: false
 aegir_download_hostmaster_modules:
   - name: hosting_task_gc_extra
     version: '7.x-1.0-beta2'
